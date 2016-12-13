@@ -9,13 +9,13 @@ Convert decimals into word using custom helper in Laravel
 
 'aliases' => [
     ...
-    'Helper' => 'App\Helpers\Helper::class',
+    'Helper' => 'App\Helpers\Helper',
     ...
 ```
 > **Step 3: Use it in your Blade template**
 
 ```blade
-{!! Helper::shout('this is how to use autoloading correctly!!') !!}
+{!! Helper::convert_number_to_words(123) !!}
 ```
 > **Also : Use this class anywhere in your Laravel app**
 
