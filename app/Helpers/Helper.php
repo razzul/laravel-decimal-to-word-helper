@@ -46,11 +46,9 @@ class Helper
             1000000000000000    => 'quadrillion',
             1000000000000000000 => 'quintillion',
         );
-
         if (!is_numeric($number)) {
             return false;
         }
-
         if (($number >= 0 && (int) $number < 0) || (int) $number < 0 - PHP_INT_MAX) {
             // overflow
             trigger_error(
@@ -59,17 +57,13 @@ class Helper
             );
             return false;
         }
-
         if ($number < 0) {
-            return $negative . convert_number_to_words(abs($number));
+            return $negative . self::convert_number_to_words(abs($number));
         }
-
         $string = $fraction = null;
-
         if (strpos($number, '.') !== false) {
             list($number, $fraction) = explode('.', $number);
         }
-
         switch (true) {
             case $number < 21:
                 $string = $dictionary[$number];
@@ -101,7 +95,6 @@ class Helper
                 }
                 break;
         }
-
         if (null !== $fraction && is_numeric($fraction)) {
             $string .= $decimal;
             $words = array();
@@ -110,7 +103,6 @@ class Helper
             }
             $string .= implode(' ', $words);
         }
-
         return ucwords($string);
     }
 }
